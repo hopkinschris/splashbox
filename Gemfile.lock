@@ -106,6 +106,8 @@ GEM
       mini_portile (~> 0.5.0)
     pg (0.16.0)
     polyglot (0.3.3)
+    protected_attributes (1.0.3)
+      activemodel (>= 4.0.0, < 5.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -209,6 +211,7 @@ DEPENDENCIES
   neat
   newrelic_rpm (>= 3.5.7)
   pg
+  protected_attributes
   rack-timeout
   rails (>= 4.0.0)
   rails_12factor
