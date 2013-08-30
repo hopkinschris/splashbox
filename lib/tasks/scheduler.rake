@@ -17,3 +17,13 @@ task scrape: :environment do
   end
   puts "Done."
 end
+
+desc "Save photos to disk"
+task save_photos: :environment do
+  puts "Saving photos to disk..."
+  Photo.where(saved_to_disk: false).each do |photo|
+    photo.save_to_disk
+    puts "Photo saved to disk as #{ photo.id }.jpg"
+  end
+  puts "Done."
+end
