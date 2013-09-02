@@ -29,13 +29,7 @@ class Photo < ActiveRecord::Base
       image = Base64.encode64 content.body_io.to_s
     end
     upload_file("#{ id }.jpg", image)
-    mark_saved_to_disk
-  end
-
-  private
-
-  def mark_saved_to_dropbox
-    self.saved_to_dropbox = true
-    save
+    photo = Photo.find_by_id(id)
+    photo.update_attribute(:saved_to_dropbox, true)
   end
 end

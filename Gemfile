@@ -21,6 +21,8 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'unicorn'
 gem 'mechanize'
+gem 'dropbox-api'
+gem 'awesome_print'
 
 group :development do
   gem 'foreman'
