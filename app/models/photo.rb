@@ -1,8 +1,10 @@
 require 'mechanize'
 
 class Photo < ActiveRecord::Base
+  extend Splashbox::Dropbox
+
   attr_accessible :source_url,
-                  :saved_to_disk
+                  :saved_to_dropbox
 
   def self.has_source_url?(url)
     if self.find_by_source_url(url)
@@ -16,19 +18,24 @@ class Photo < ActiveRecord::Base
     self.create(source_url: url)
   end
 
-  def save_to_disk
+  def self.save_to_dropbox(id, url)
     agent = Mechanize.new
 
     # Deal with any redirects (e.g. bit.ly)
-    initial_url = agent.get(self.source_url)
+    initial_url = agent.get(url)
     destination_url = initial_url.uri.to_s
 
-    agent.get(destination_url).save "../splashbox/app/assets/images/unsplash/#{ self.id }.jpg"
+    if content = agent.get(destination_url)
+      image = Base64.encode64 content.body_io.to_s
+    end
+    upload_file("#{ id }.jpg", image)
     mark_saved_to_disk
   end
 
-  def mark_saved_to_disk
-    self.saved_to_disk = true
+  private
+
+  def mark_saved_to_dropbox
+    self.saved_to_dropbox = true
     save
   end
 end
