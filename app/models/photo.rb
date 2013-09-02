@@ -25,10 +25,8 @@ class Photo < ActiveRecord::Base
     initial_url = agent.get(url)
     destination_url = initial_url.uri.to_s
 
-    if content = agent.get(destination_url)
-      image = Base64.encode64 content.body_io.to_s
-    end
-    upload_file("#{ id }.jpg", image)
+    content = agent.get_file(destination_url)
+    upload_file("#{ id }.jpg", content)
     photo = Photo.find_by_id(id)
     photo.update_attribute(:saved_to_dropbox, true)
   end
