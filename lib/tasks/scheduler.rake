@@ -4,7 +4,7 @@ task scrape: :environment do
   require 'nokogiri'
   require 'open-uri'
 
-  (1..1).each do |i|
+  (1..999).each do |i|
     doc = Nokogiri::HTML(open("http://unsplash.com/page/#{ i }"))
     html = doc.css('.post .photo_div a')
     break if html.empty?

@@ -23,6 +23,7 @@ gem 'unicorn'
 gem 'mechanize'
 gem 'dropbox-api'
 gem 'awesome_print'
+gem 'highline'
 
 group :development do
   gem 'foreman'

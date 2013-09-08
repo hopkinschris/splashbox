@@ -97,6 +97,7 @@ GEM
       thor (>= 0.13.6)
     hashie (2.0.5)
     high_voltage (1.2.4)
+    highline (1.6.19)
     hike (1.2.3)
     http-cookie (1.0.1)
       domain_name (~> 0.5)
@@ -243,6 +244,7 @@ DEPENDENCIES
   flutie
   foreman
   high_voltage
+  highline
   jquery-rails
   launchy
   mechanize
