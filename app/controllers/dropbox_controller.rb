@@ -16,14 +16,17 @@ class DropboxController < ApplicationController
   end
 
   def create_user_and_return_home(result)
-    if user = User.find_by_name(params[:uid])
+    if user = User.find_by_dropbox_uid(params[:uid])
       user.update_attributes(access_token: result.token, access_secret: result.secret)
-      flash[:notice] = "You already have an account :)"
-      redirect_to controller: 'home', action: 'show', new_user: false
+      if user.waitlist
+        redirect_to controller: 'home', action: 'show', id: user.id
+      else
+        redirect_to controller: 'home', action: 'show', id: user.id
+      end
     else
-      user = User.create(access_token: result.token, access_secret: result.secret, name: params[:uid])
-      flash[:notice] = "Beauty! You've succesfully authorized Splashbox."
-      redirect_to controller: 'home', action: 'show', new_user: true
+      user = User.create!(access_token: result.token, access_secret: result.secret, dropbox_uid: params[:uid])
+      flash[:notice] = "Beauty! You've succesfully authorized Splashbox with Dropbox."
+      redirect_to controller: 'home', action: 'show', id: user.id
     end
   end
 end

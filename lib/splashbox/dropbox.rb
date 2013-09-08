@@ -1,14 +1,20 @@
 module Splashbox::Dropbox
 
-  def upload_file(filename, image)
-    admin = User.admin
-    build_admin_client(admin)
-    @admin_client.upload filename, image
+  def upload_file(user, filename, image)
+    client = client || build_client(user)
+    client.upload filename, image
+  end
+
+  def set_name_and_email(user)
+    client = client || build_client(user)
+    name  = client.account.display_name
+    email = client.account.email
+    user.update_attributes!(name: name, email: email)
   end
 
   private
 
-  def build_admin_client(admin)
-    @admin_client = Dropbox::API::Client.new token: admin.access_token, secret: admin.access_secret
+  def build_client(user)
+    Dropbox::API::Client.new token: user.access_token, secret: user.access_secret
   end
 end

@@ -1,24 +1,17 @@
-require 'mechanize'
-
 class Photo < ActiveRecord::Base
-  extend Splashbox::Dropbox
+  include Splashbox::Dropbox
+
+  belongs_to :user
 
   attr_accessible :source_url,
                   :saved_to_dropbox
 
-  def self.has_source_url?(url)
-    if self.find_by_source_url(url)
-      return true
-    else
-      return false
-    end
+  def self.new_from_source_url(user, url)
+    user.photos.build(source_url: url)
+    user.save
   end
 
-  def self.new_from_source_url(url)
-    self.create(source_url: url)
-  end
-
-  def self.save_to_dropbox(id, url)
+  def save_to_dropbox(user, id, url)
     agent = Mechanize.new
 
     # Deal with any redirects (e.g. bit.ly)
@@ -26,8 +19,7 @@ class Photo < ActiveRecord::Base
     destination_url = initial_url.uri.to_s
 
     content = agent.get_file(destination_url)
-    upload_file("#{ id }.jpg", content)
-    photo = Photo.find_by_id(id)
-    photo.update_attribute(:saved_to_dropbox, true)
+    upload_file(user, "#{ id }.jpg", content)
+    self.update_attribute!(:saved_to_dropbox, true)
   end
 end

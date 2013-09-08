@@ -1,3 +1,14 @@
-<%= form_tag(auth_url) do %>
-  <%= submit_tag "Authorize Splashbox" %>
+<% if @user %>
+  <% if @user.waitlist %>
+    <h3>You're on the waitlist.</h3>
+    <p>Please stay tuned :)</p>
+  <% else %>
+    <h3>Welcome back!</h3>
+    <p>Hope you're enjoying Splashbox :)</p>
+    <p>It may take up to 24 hours before seeing photos come through to your Dropbox.</p>
+  <% end %>
+<% else %>
+  <%= form_tag(auth_url) do %>
+    <%= submit_tag "Authorize with Dropbox" %>
+  <% end %>
 <% end %>

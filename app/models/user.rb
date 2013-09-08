@@ -1,8 +1,29 @@
 class User < ActiveRecord::Base
-  attr_accessible :name,
-                  :access_token,
-                  :access_secret
+  include Splashbox::Dropbox
 
-  scope :admin,     -> { where(name: ENV['DROPBOX_ADMIN_ID']).first }
-  scope :consumers, -> { where.not(name: ENV['DROPBOX_ADMIN_ID']).all }
+  has_many :photos, dependent: :destroy
+
+  after_create :get_dropbox_attributes
+
+  attr_accessible :name,
+                  :email,
+                  :dropbox_uid,
+                  :access_token,
+                  :access_secret,
+                  :waitlist
+
+  scope :admin,     -> { where(dropbox_uid: ENV['DROPBOX_ADMIN_ID']).first }
+  scope :consumers, -> { where(waitlist: false).all }
+  scope :waiting,   -> { where(waitlist: true).all }
+
+  def activate
+    self.waitlist = false
+    save
+  end
+
+  private
+
+  def get_dropbox_attributes
+    set_name_and_email(self)
+  end
 end
