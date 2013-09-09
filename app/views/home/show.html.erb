@@ -1,14 +1,39 @@
-<% if @user %>
-  <% if @user.waitlist %>
-    <h3>You're on the waitlist.</h3>
-    <p>Please stay tuned :)</p>
-  <% else %>
-    <h3>Welcome back!</h3>
-    <p>Hope you're enjoying Splashbox :)</p>
-    <p>It may take up to 24 hours before seeing photos come through to your Dropbox.</p>
-  <% end %>
-<% else %>
-  <%= form_tag(auth_url) do %>
-    <%= submit_tag "Authorize with Dropbox" %>
-  <% end %>
+<header>
+  <h1>Splashbox</h1>
+</header>
+
+<section>
+  <article>
+    <% if @user %>
+      <% if @user.waitlist %>
+        <h2 class="blue">You're on the waitlist</h2>
+        <p>Please stay tuned</p>
+      <% else %>
+        <h2 class="blue">Welcome back</h2>
+        <p>Hope you're enjoying Splashbox!</p>
+        <p>It may take up to 24 hours before seeing photos come through to your Dropbox</p>
+        <p>New photos are added every 10 days</p>
+      <% end %>
+    <% else %>
+      <h2>Hi-resolution photos delivered to your Dropbox</h2>
+      <%= form_tag(auth_url) do %>
+        <%= submit_tag "Authorize with Dropbox" %>
+      <% end %>
+    <% end %>
+  </article>
+</section>
+
+<footer>
+  <span>Photos c/o <a href="http://unsplash.com" target="_blank">unsplash.com</a></span>
+  <a href="https://twitter.com/hopkinschris" class="twitter-follow-button" data-show-count="false">Follow @hopkinschris</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</footer>
+
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("h1").fitText(0.8, { maxFontSize: '80px' });
+      $("h2").fitText(1.4, { maxFontSize: '32px' });
+    });
+  </script>
 <% end %>

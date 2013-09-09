@@ -9,7 +9,7 @@ module Splashbox::Dropbox
     client = client || build_client(user)
     name  = client.account.display_name
     email = client.account.email
-    user.update_attributes!(name: name, email: email)
+    user.update_attributes(name: name, email: email)
   end
 
   private

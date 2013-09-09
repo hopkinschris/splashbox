@@ -1,0 +1,61 @@
+html {
+  background: asset-url("bg.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  body {
+    header {
+      margin-top: 10%;
+      h1 {
+        font: 5em "proxima_novasemibold",'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: normal;
+        letter-spacing: 2px;
+        text-align: center;
+      }
+    }
+    section {
+      article {
+        h2 {
+          font: 2em "proxima_novalight",'Helvetica Neue', Helvetica, Arial, sans-serif;
+          font-weight: normal;
+          letter-spacing: 1px;
+          &.blue {
+            color: #289AD8;
+          }
+          a {
+            text-decoration: none;
+            color: inherit;
+          }
+        }
+        p {
+          font: 1em "proxima_novalight",'Helvetica Neue', Helvetica, Arial, sans-serif;
+          line-height: 1.5em;
+          letter-spacing: 1px;
+        }
+      }
+    }
+    footer {
+      position: fixed;
+      left: 0px;
+      bottom: 0px;
+      height: 5%;
+      width: 100%;
+      font-family: "proxima_novalight",'Helvetica Neue', Helvetica, Arial, sans-serif;
+      text-align: center;
+      letter-spacing: 1px;
+      a {
+        text-decoration: none;
+        color: inherit;
+        &:hover {
+          border-bottom: 1px solid;
+        }
+      }
+      .twitter-follow-button {
+        position: absolute;
+        right: 2%;
+        top: -5%;
+      }
+    }
+  }
+}

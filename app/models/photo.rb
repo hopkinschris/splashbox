@@ -1,4 +1,4 @@
-require 'highline/import'
+# require 'highline/import'
 
 class Photo < ActiveRecord::Base
   include Splashbox::Dropbox
@@ -7,6 +7,8 @@ class Photo < ActiveRecord::Base
 
   attr_accessible :source_url,
                   :saved_to_dropbox
+
+  scope :last_saved, -> { where(saved_to_dropbox: true).last }
 
   def self.new_from_source_url(user, url)
     user.photos.build(source_url: url)
@@ -22,7 +24,7 @@ class Photo < ActiveRecord::Base
 
     content = agent.get_file(destination_url)
     upload_file(user, "#{ id }.jpg", content)
-    self.update_attribute!(:saved_to_dropbox, true)
+    self.update_attribute(:saved_to_dropbox, true)
   end
 
   private
