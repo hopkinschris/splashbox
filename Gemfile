@@ -24,6 +24,7 @@ gem 'mechanize'
 gem 'dropbox-api'
 gem 'awesome_print'
 gem 'highline'
+gem 'cloudinary'
 
 group :development do
   gem 'foreman'
