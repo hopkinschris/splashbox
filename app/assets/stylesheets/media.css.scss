@@ -1,0 +1,17 @@
+@include media(min-width 320px max-width 480px) {
+  h1 {
+    background: asset-url("logo@2x.png");
+  }
+  #tagline {
+    max-width: 75%!important;
+  }
+  .care-of {
+    display: none;
+  }
+}
+
+@include media(min-width 321px) {
+  .care-of {
+    display: none;
+  }
+}

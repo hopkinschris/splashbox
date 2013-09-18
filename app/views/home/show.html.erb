@@ -7,35 +7,43 @@
     <% if @user %>
       <% if @user.waitlist %>
         <h2 class="blue">You're on the waitlist</h2>
-        <p>Please stay tuned</p>
+        <p>Having a waitlist helps me better manage the load put on the Heroku worker dynos to run the app. Please check back soon!</p>
+        </br>
+        <p>If you feel you've been on the waitlist for "forever" then <%= link_to "tweet me", "http://twitter.com/hopkinschris", target: "_blank" %>.</p>
       <% else %>
         <h2 class="blue">Welcome back</h2>
-        <p>Hope you're enjoying Splashbox!</p>
-        <p>It may take up to 24 hours before seeing photos come through to your Dropbox</p>
-        <p>New photos are added every 10 days</p>
+        <p>Hope you're enjoying Splashbox! It may take up to 24 hours before seeing photos come through to your Dropbox. New photos are added every 10 days</p>
       <% end %>
     <% else %>
-      <h2>Hi-resolution photos delivered to your Dropbox</h2>
+      <h2 id="tagline"><span id="name">Splashbox,</span> hi-resolution photos delivered to your Dropbox</h2>
       <%= form_tag(auth_url) do %>
         <%= submit_tag "Authorize with Dropbox" %>
       <% end %>
     <% end %>
+    <span id="external">
+      <a href="http://blog.chocol.it/#" id="blog-post" target="_blank">Read more</a>
+      •
+      <a href="http://github.com/chocolit/splashbox" id="repo" target="_blank">Version 1.0.0</a>
+    </span>
+    <div class="social">
+      <iframe id="github" src="http://ghbtns.com/github-btn.html?user=chocolit&repo=splashbox&type=watch&count=false"
+        allowtransparency="true" frameborder="0" scrolling="0" width="112" height="30"></iframe>
+      <a href="https://twitter.com/hopkinschris" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @hopkinschris</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-text="Splashbox • Hi-resolution photos delivered to your Dropbox" data-count="none" data-via="hopkinschris">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </div>
   </article>
 </section>
 
 <footer>
-  <iframe id="github" src="http://ghbtns.com/github-btn.html?user=chocolit&repo=splashbox&type=watch&count=true"
-    allowtransparency="true" frameborder="0" scrolling="0" width="112" height="30"></iframe>
-  <span>Photos c/o <a href="http://unsplash.com" target="_blank">unsplash.com</a></span>
-  <a href="https://twitter.com/hopkinschris" class="twitter-follow-button" data-show-count="false">Follow @hopkinschris</a>
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <span class="care-of">Photos c/o <a href="http://unsplash.com" target="_blank">unsplash.com</a></span>
 </footer>
 
 <% content_for :javascript do %>
   <script type="text/javascript">
     $(document).ready(function() {
-      $("h1").fitText(0.8, { maxFontSize: '80px' });
-      $("h2").fitText(1.4, { maxFontSize: '32px' });
+      $("h2").fitText(1.2, { maxFontSize: '32px' });
     });
   </script>
 <% end %>

@@ -8,20 +8,29 @@ html {
     header {
       margin-top: 10%;
       h1 {
-        font: 5em "proxima_novasemibold",'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-weight: normal;
-        letter-spacing: 2px;
-        text-align: center;
+        background: asset-url("logo.png") no-repeat;
+        background-size: 113px 113px;
+        width: 113px;
+        height: 113px;
+        text-indent: -9999px;
+        margin: 0 auto;
       }
     }
     section {
       article {
         h2 {
-          font: 2em "proxima_novalight",'Helvetica Neue', Helvetica, Arial, sans-serif;
+          font: 2rem "proxima_novalight",'Helvetica Neue', Helvetica, Arial, sans-serif;
           font-weight: normal;
           letter-spacing: 1px;
           &.blue {
             color: #289AD8;
+          }
+          &#tagline {
+            max-width: 50%;
+            margin: 0.83em auto;
+          }
+          #name {
+            font-family: "proxima_novasemibold",'Helvetica Neue', Helvetica, Arial, sans-serif;
           }
           a {
             text-decoration: none;
@@ -29,9 +38,39 @@ html {
           }
         }
         p {
-          font: 1em "proxima_novalight",'Helvetica Neue', Helvetica, Arial, sans-serif;
-          line-height: 1.5em;
-          letter-spacing: 1px;
+          max-width: 60%;
+          margin: 0 auto;
+          line-height: 1.4rem;
+          a {
+            text-decoration: none;
+            color: inherit;
+            &:hover {
+              border-bottom: 1px solid;
+            }
+          }
+        }
+        #blog-post,
+        #repo {
+          font-family: "proxima_novasemibold",'Helvetica Neue', Helvetica, Arial, sans-serif;
+          line-height: 3rem;
+          text-decoration: none;
+          color: inherit;
+          -webkit-text-size-adjust: none;
+          &:hover {
+            border-bottom: 1px solid;
+          }
+        }
+        .social {
+          width: 182px;
+          margin: 2rem auto;
+          text-align: center;
+          #github {
+            float: left;
+            width: 50px!important;
+          }
+          .twitter-follow-button {
+            float: right;
+          }
         }
       }
     }
@@ -41,7 +80,7 @@ html {
       bottom: 0px;
       height: 5%;
       width: 100%;
-      font-family: "proxima_novalight",'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font: 0.8rem "proxima_nova_rgregular",'Helvetica Neue', Helvetica, Arial, sans-serif;
       text-align: center;
       letter-spacing: 1px;
       a {
@@ -50,16 +89,6 @@ html {
         &:hover {
           border-bottom: 1px solid;
         }
-      }
-      #github {
-        position: absolute;
-        left: 2%;
-        top: -5%;
-      }
-      .twitter-follow-button {
-        position: absolute;
-        right: 2%;
-        top: -5%;
       }
     }
   }
