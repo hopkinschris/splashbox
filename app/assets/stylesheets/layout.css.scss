@@ -3,6 +3,15 @@ html {
     color: #333;
     font-family: "proxima_nova_rgregular",'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: normal;
+    #flash {
+      text-align: center;
+      #flash_error {
+        color: #c0392b;
+      }
+      #flash_notice {
+        color: #1abc9c;
+      }
+    }
     section {
       @include outer-container;
       article {

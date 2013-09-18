@@ -11,16 +11,23 @@ class DropboxController < ApplicationController
   def authorized_callback
     consumer = Dropbox::API::OAuth.consumer(:authorize)
     request_token = OAuth::RequestToken.new(consumer, session[:request_token], session[:request_token_secret])
-    result = request_token.get_access_token(oauth_verifier: params[:oauth_token])
-    create_user_and_return_home(result)
+    if params[:not_approved] == "true"
+      flash[:error] = "Oops! Looks like you didn't complete authentication with Dropbox."
+      redirect_to root_url
+    else
+      result = request_token.get_access_token(oauth_verifier: params[:oauth_token])
+      create_user_and_return_home(result)
+    end
   end
 
   def create_user_and_return_home(result)
     if user = User.find_by_dropbox_uid(params[:uid])
       user.update_attributes(access_token: result.token, access_secret: result.secret)
       if user.waitlist
+        flash[:notice] = "Success!"
         redirect_to controller: 'home', action: 'show', id: user.id
       else
+        flash[:notice] = "Success!"
         redirect_to controller: 'home', action: 'show', id: user.id
       end
     else
