@@ -2,7 +2,11 @@ module Splashbox::Dropbox
 
   def upload_file(user, filename, image)
     client = client || build_client(user)
-    client.upload filename, image
+    begin
+      client.upload filename, image
+    rescue => e
+      puts "#{ e.message }"
+    end
   end
 
   def set_name_and_email(user)
