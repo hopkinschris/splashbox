@@ -8,7 +8,8 @@ class Photo < ActiveRecord::Base
   attr_accessible :source_url,
                   :saved_to_dropbox
 
-  scope :last_saved, -> { where(saved_to_dropbox: true).last }
+  scope :last_saved,  -> { where(saved_to_dropbox: true).last }
+  scope :total_saved, -> { where(saved_to_dropbox: true).count }
 
   def self.new_from_source_url(user, url)
     user.photos.build(source_url: url)

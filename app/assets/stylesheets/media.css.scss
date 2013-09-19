@@ -10,7 +10,7 @@
   }
 }
 
-@include media(min-width 321px) {
+@include media(min-width 321px max-width 768px) {
   .care-of {
     display: none;
   }
