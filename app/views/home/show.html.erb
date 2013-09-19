@@ -37,7 +37,7 @@
 </section>
 
 <footer>
-  <span class="care-of"><span id="photo-count"><%= Photo.total_saved %></span> photos c/o <a href="http://unsplash.com" target="_blank">unsplash.com</a></span>
+  <span class="care-of"><span id="photo-count"><%= number_with_delimiter(Photo.total_saved, delimiter: ',') %></span> photos uploaded to Dropbox accounts c/o <a href="http://unsplash.com" target="_blank">unsplash.com</a></span>
 </footer>
 
 <% content_for :javascript do %>
