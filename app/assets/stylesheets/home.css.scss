@@ -61,9 +61,12 @@ html {
           }
         }
         .social {
-          width: 182px;
+          width: 236px;
           margin: 2rem auto;
           text-align: center;
+          .hn-button {
+            margin-right: 4px;
+          }
           #github {
             float: left;
             width: 50px!important;
