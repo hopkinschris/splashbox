@@ -1,12 +1,8 @@
 module Splashbox::Dropbox
 
   def upload_file(user, filename, image)
-    begin
-      client = client || build_client(user)
-      client.upload filename, image
-    rescue => e
-      puts "#{ e.message }"
-    end
+    client = client || build_client(user)
+    client.upload filename, image
   end
 
   def set_name_and_email(user)
@@ -19,6 +15,12 @@ module Splashbox::Dropbox
   private
 
   def build_client(user)
-    Dropbox::API::Client.new token: user.access_token, secret: user.access_secret
+    begin
+      Dropbox::API::Client.new token: user.access_token, secret: user.access_secret
+    rescue => e
+      user.deactivate
+      puts "#{ user.name }'s account has been deactivated."
+      puts "#{ e.message }"
+    end
   end
 end

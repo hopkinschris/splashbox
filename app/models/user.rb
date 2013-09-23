@@ -10,14 +10,21 @@ class User < ActiveRecord::Base
                   :dropbox_uid,
                   :access_token,
                   :access_secret,
-                  :waitlist
+                  :waitlist,
+                  :deactivated
 
-  scope :admin,     -> { where(dropbox_uid: ENV['DROPBOX_ADMIN_ID']).first }
-  scope :consumers, -> { where(waitlist: false).all }
-  scope :waiting,   -> { where(waitlist: true).all }
+  scope :admin,       -> { where(dropbox_uid: ENV['DROPBOX_ADMIN_ID']).first }
+  scope :consumers,   -> { where(waitlist: false).all }
+  scope :waiting,     -> { where(waitlist: true).all }
+  scope :deactivated, -> { where(deactivated: true).all }
 
   def activate
     self.waitlist = false
+    save
+  end
+
+  def deactivate
+    self.deactivated = true
     save
   end
 

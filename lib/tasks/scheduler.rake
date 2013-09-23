@@ -24,9 +24,11 @@ desc "Save photos to Dropbox"
 task save_photos: :environment do
   puts "Saving photos to Dropbox..."
   User.consumers.each do |user|
-    user.photos.where(saved_to_dropbox: false).each do |photo|
-      photo.save_to_dropbox(user, photo.id, photo.source_url)
-      puts "User #{ user.id }: Photo saved to Dropbox as #{ photo.id }.jpg"
+    unless user.deactivated
+      user.photos.where(saved_to_dropbox: false).each do |photo|
+        photo.save_to_dropbox(user, photo.id, photo.source_url)
+        puts "User #{ user.id }: Photo saved to Dropbox as #{ photo.id }.jpg"
+      end
     end
   end
   puts "Done."
