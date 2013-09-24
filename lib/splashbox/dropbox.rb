@@ -15,12 +15,6 @@ module Splashbox::Dropbox
   private
 
   def build_client(user)
-    begin
-      Dropbox::API::Client.new token: user.access_token, secret: user.access_secret
-    rescue => e
-      user.deactivate
-      puts "#{ user.name }'s account has been deactivated."
-      puts "#{ e.message }"
-    end
+    Dropbox::API::Client.new token: user.access_token, secret: user.access_secret
   end
 end
