@@ -29,7 +29,7 @@ html {
             max-width: 50%;
             margin: 0.83em auto;
           }
-          #name {
+          .name {
             font-family: "proxima_novasemibold",'Helvetica Neue', Helvetica, Arial, sans-serif;
           }
           a {
@@ -50,7 +50,9 @@ html {
           }
         }
         #blog-post,
-        #repo {
+        #repo,
+        #waitlist-link,
+        #back {
           font-family: "proxima_novasemibold",'Helvetica Neue', Helvetica, Arial, sans-serif;
           line-height: 3rem;
           text-decoration: none;
@@ -70,6 +72,31 @@ html {
           }
           .twitter-follow-button {
             float: right;
+          }
+        }
+        .waitlist {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          li {
+            line-height: 1.4rem;
+            &:nth-child(2) {
+              &:before {
+                content: "→";
+                color: #289AD8;
+                margin: 0 1rem;
+              }
+              &:after {
+                content: "←";
+                color: #289AD8;
+                margin: 0 1rem;
+              }
+            }
+          }
+          .example {
+            font-family: "proxima_novasemibold",'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #289AD8;
+            margin: 1rem;
           }
         }
       }

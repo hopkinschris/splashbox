@@ -4,29 +4,14 @@
 
 <section>
   <article>
-    <% if @user %>
-      <% if @user.waitlist %>
-        <h2 class="blue">You're on the waitlist</h2>
-        <p>Having a waitlist helps me better manage the load put on the Heroku worker dynos to run the app. Please check back soon!</p>
-        </br>
-        <p>If you feel you've been on the waitlist for "forever" then <%= link_to "tweet me", "http://twitter.com/hopkinschris", target: "_blank" %>.</p>
-      <% else %>
-        <h2 class="blue">Welcome back</h2>
-        <p>Hope you're enjoying Splashbox! It may take up to 24 hours before seeing photos come through to your Dropbox. New photos are added every 10 days</p>
+    <h2><span class="name">Waitlist,</span> <%= User.waiting.count %> <%= User.waiting.count == 1 ? "person" : "people" %></h2>
+    <ul class="waitlist">
+      <li class="example">First name • Dropbox ID</li>
+      <% User.waiting.each do |user| %>
+        <%= content_tag :li, "#{ user.name.split(' ', 2)[0] } • #{ user.dropbox_uid }" %>
       <% end %>
-    <% else %>
-      <h2 id="tagline"><span class="name">Splashbox,</span> hi-resolution photos delivered to your Dropbox</h2>
-      <%= form_tag(auth_url) do %>
-        <%= submit_tag "Authorize with Dropbox" %>
-      <% end %>
-    <% end %>
-    <span id="external">
-      <a href="http://blog.chocol.it/2013/09/19/splashbox/" id="blog-post" target="_blank">Read more</a>
-      •
-      <a href=<%= waitlist_url %> id="waitlist-link">Waitlist</a>
-      •
-      <a href="https://github.com/chocolit/splashbox/releases/tag/1.0.0" id="repo" target="_blank">Version 1.0.0</a>
-    </span>
+    </ul>
+    <a id="back" href=<%= root_url %>>Back</a>
     <div class="social">
       <iframe id="github" src="http://ghbtns.com/github-btn.html?user=chocolit&repo=splashbox&type=watch&count=false"
         allowtransparency="true" frameborder="0" scrolling="0" width="112" height="30"></iframe>
@@ -37,10 +22,6 @@
     </div>
   </article>
 </section>
-
-<footer>
-  <span class="care-of"><span id="photo-count"><%= number_with_delimiter(Photo.total_saved, delimiter: ',') %></span> photos uploaded to Dropbox accounts c/o <a href="http://unsplash.com" target="_blank">unsplash.com</a></span>
-</footer>
 
 <% content_for :javascript do %>
   <script type="text/javascript">
