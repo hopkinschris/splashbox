@@ -8,6 +8,9 @@
   .care-of {
     display: none;
   }
+  .waitlist {
+    max-height: 125px!important;
+  }
 }
 
 @include media(min-width 321px max-width 768px) {

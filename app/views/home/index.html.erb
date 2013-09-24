@@ -5,14 +5,16 @@
 <section>
   <article>
     <h2><span class="name">Waitlist,</span> <%= User.waiting.count %> <%= User.waiting.count == 1 ? "person" : "people" %></h2>
+    <li class="example">First name • Dropbox ID</li>
     <ul class="waitlist">
-      <li class="example">First name • Dropbox ID</li>
       <% User.waiting.each do |user| %>
         <%= content_tag :li, "#{ user.name.split(' ', 2)[0] } • #{ user.dropbox_uid }" %>
       <% end %>
     </ul>
-    <a id="back" href=<%= root_url %>>Back</a>
-    <div class="social">
+    <span id="back-wrapper">
+      <a id="back" href=<%= root_url %>>Back</a>
+    </span>
+    <div id="waitlist-social" class="social">
       <iframe id="github" src="http://ghbtns.com/github-btn.html?user=chocolit&repo=splashbox&type=watch&count=false"
         allowtransparency="true" frameborder="0" scrolling="0" width="112" height="30"></iframe>
       <a href="https://twitter.com/hopkinschris" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false" data-url="http://splashboxapp.com">Follow @hopkinschris</a>
