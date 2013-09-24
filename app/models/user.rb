@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   scope :admin,       -> { where(dropbox_uid: ENV['DROPBOX_ADMIN_ID']).first }
   scope :consumers,   -> { where(waitlist: false).all }
   scope :waiting,     -> { where(waitlist: true).all }
-  scope :deactivated, -> { where(deactivated: true).all }
+  scope :deactivated, -> { where(deactivated: true) }
 
   def activate
     self.waitlist = false
@@ -24,8 +24,7 @@ class User < ActiveRecord::Base
   end
 
   def deactivate
-    self.deactivated = true
-    save
+    update_attributes(deactivated: true)
   end
 
   private

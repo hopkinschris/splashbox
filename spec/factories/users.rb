@@ -1,8 +1,8 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :user do
-    name "MyString"
-    access_token "MyString"
+    name "Foo Bar"
+    email "foo@bar.com"
+    waitlist "true"
+    deactivated "false"
   end
 end
