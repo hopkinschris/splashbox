@@ -7,7 +7,7 @@
     <h2><span class="name">Waitlist,</span> <%= User.waiting.count %> <%= User.waiting.count == 1 ? "person" : "people" %></h2>
     <li class="example">First name • Dropbox ID</li>
     <ul class="waitlist">
-      <% User.waiting.each do |user| %>
+      <% User.waiting.sort_by(&:created_at).each do |user| %>
         <%= content_tag :li, "#{ user.name.split(' ', 2)[0] } • #{ user.dropbox_uid }" %>
       <% end %>
     </ul>
