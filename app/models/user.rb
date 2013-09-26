@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
   include Splashbox::Dropbox
 
-  has_many :photos, dependent: :destroy
-
   after_create :get_dropbox_attributes
+
+  serialize :completions, Array
 
   attr_accessible :name,
                   :email,
@@ -11,11 +11,12 @@ class User < ActiveRecord::Base
                   :access_token,
                   :access_secret,
                   :waitlist,
-                  :deactivated
+                  :deactivated,
+                  :completions
 
   scope :admin,       -> { where(dropbox_uid: ENV['DROPBOX_ADMIN_ID']).first }
-  scope :consumers,   -> { where(waitlist: false).all }
-  scope :waiting,     -> { where(waitlist: true).all }
+  scope :consumers,   -> { where(waitlist: false) }
+  scope :waiting,     -> { where(waitlist: true) }
   scope :deactivated, -> { where(deactivated: true) }
 
   def activate

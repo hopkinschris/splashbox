@@ -4,12 +4,23 @@ html {
     font-family: "proxima_nova_rgregular",'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: normal;
     #flash {
+      position: relative;
+      top: 1rem;
       text-align: center;
       #flash_error {
-        color: #c0392b;
+        background: #c0392b;
+        color: #fff;
+        border-radius: 4px;
+        padding: 0.5rem;
+        margin: 0 auto;
       }
       #flash_notice {
-        color: #1abc9c;
+        background: #289AD8;
+        color: #fff;
+        width: 50%;
+        border-radius: 4px;
+        padding: 0.5rem;
+        margin: 0 auto;
       }
     }
     section {

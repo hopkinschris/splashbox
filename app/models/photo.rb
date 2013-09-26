@@ -3,17 +3,10 @@
 class Photo < ActiveRecord::Base
   include Splashbox::Dropbox
 
-  belongs_to :user
+  attr_accessible :source_url
 
-  attr_accessible :source_url,
-                  :saved_to_dropbox
-
-  scope :last_saved,  -> { where(saved_to_dropbox: true).last }
-  scope :total_saved, -> { where(saved_to_dropbox: true).count }
-
-  def self.new_from_source_url(user, url)
-    user.photos.build(source_url: url)
-    user.save
+  def self.new_from_source_url(url)
+    Photo.create(source_url: url)
   end
 
   def save_to_dropbox(user, id, url)
@@ -25,7 +18,6 @@ class Photo < ActiveRecord::Base
 
     content = agent.get_file(destination_url)
     upload_file(user, "#{ id }.jpg", content)
-    self.update_attribute(:saved_to_dropbox, true)
   end
 
   private
