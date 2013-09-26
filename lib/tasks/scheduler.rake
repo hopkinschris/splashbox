@@ -40,11 +40,13 @@ desc "Upgrade activated users over to the new system"
 task upgrade_users: :environment do
   puts "Upgrading users..."
   User.consumers.each do |user|
-    Photo.all.each do |photo|
-      user.completions.push photo.source_url
+    unless user.deactivated
+      Photo.all.each do |photo|
+        user.completions.push photo.source_url
+      end
+      user.save!
+      puts "#{ user.name } has been upgraded."
     end
-    user.save!
-    puts "#{ user.name } has been upgraded."
   end
   puts "Done."
 end
