@@ -20,8 +20,7 @@ class User < ActiveRecord::Base
   scope :deactivated, -> { where(deactivated: true) }
 
   def activate
-    self.waitlist = false
-    save
+    update_attributes(waitlist: false)
   end
 
   def deactivate
