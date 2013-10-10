@@ -25,6 +25,7 @@ task save_photos: :environment do
     unless user.deactivated
       Photo.all.each do |photo|
         unless user.completions.include? photo.source_url
+          puts "user id: #{ user.id }"
           photo.save_to_dropbox(user, photo.id, photo.source_url)
           user.completions.push photo.source_url
           user.save!
