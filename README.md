@@ -4,7 +4,7 @@ Scrapes photos from [unsplash.com](http://unsplash.com) daily and saves them to 
 
 ## Inspiration
 
-I wrote about some uses here [Splashbox • Version 1.0.0](http://blog.chocol.it/2013/09/19/splashbox/).
+I wrote about some uses here [Splashbox • Version 1.0.0](http://blog.hopkins.io/2013/09/19/splashbox/).
 
 ## Credit
 
@@ -21,4 +21,4 @@ Christopher Hopkins
 
 ## License
 
-You may use Splashbox under the terms of the [MIT License](https://github.com/chocolit/splashbox/blob/master/LICENSE).
+You may use Splashbox under the terms of the [MIT License](https://github.com/hopkinschris/splashbox/blob/master/LICENSE).
