@@ -4,8 +4,7 @@ module Splashbox::Dropbox
     begin
       client = client || build_client(user)
       client.upload filename, image
-    rescue => e
-      user.completions.push("error: #{ filename }")
+    rescue Dropbox::API::Error, Dropbox::API::Error::Unauthorized => e
       puts "#{ e.message }"
     end
   end
