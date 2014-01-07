@@ -2,7 +2,8 @@
   h1 {
     background: asset-url("logo@2x.png");
   }
-  #tagline {
+  #tagline,
+  .plea {
     max-width: 75%!important;
   }
   .care-of {
