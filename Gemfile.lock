@@ -38,9 +38,6 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bourbon (3.1.8)
-      sass (>= 3.2.0)
-      thor
     builder (3.1.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -129,9 +126,6 @@ GEM
     mini_portile (0.5.1)
     minitest (4.7.5)
     multi_json (1.7.9)
-    neat (1.4.0)
-      bourbon (>= 2.1)
-      sass (>= 3.2)
     net-http-digest_auth (1.4)
     net-http-persistent (2.9)
     newrelic_rpm (3.6.6.147)
@@ -238,7 +232,6 @@ DEPENDENCIES
   awesome_print
   better_errors
   binding_of_caller
-  bourbon
   capybara-webkit (>= 0.14.1)
   cloudinary
   coffee-rails
@@ -255,7 +248,6 @@ DEPENDENCIES
   jquery-rails
   launchy
   mechanize
-  neat
   newrelic_rpm (>= 3.5.7)
   pg
   protected_attributes
