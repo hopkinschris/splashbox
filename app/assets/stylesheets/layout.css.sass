@@ -15,7 +15,33 @@ header
       margin: 15% 0
 
 section
-  padding: 58px 0
   color: #333333
-  .count
-    color: #8e75e6
+  .container
+    padding: 58px 0
+    border-bottom: 1px solid rgba(0,0,0,0.1)
+    a
+      border-bottom: 2px solid rgba(142,117,230,0.5)
+      -webkit-transition: all 0.2s ease-in-out
+      -moz-transition: all 0.2s ease-in-out
+      transition: all 0.2s ease-in-out
+      &:hover
+        border-color: rgba(142,117,230,1)
+
+footer
+  ul
+    list-style: none
+    margin: 0
+    padding: 10% 0
+    text-align: center
+    li
+      display: inline-block
+      &:nth-child(1)
+        margin-left: 0
+        margin-right: 7%
+      &:nth-child(2)
+        margin-left: 7%
+        margin-right: 0
+      a
+        color: rgba(0,0,0,0.1)
+        &:hover
+          color: rgba(142,117,230,1)
