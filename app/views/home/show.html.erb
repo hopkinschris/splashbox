@@ -6,7 +6,7 @@
         <article class="animated fadeIn">
           <h1 id="logo" class="beta">Splashbox</h1>
           <p>Hi-resolution photos delivered to your Dropbox</p>
-          <a href="<%= auth_url %>"><button class="purple">Authorize with Dropbox</button></a>
+          <a class="button" href="<%= auth_url %>"><button class="purple">Authorize with Dropbox</button></a>
         </article>
       </div>
     </div>
@@ -28,9 +28,11 @@
     <div class="row">
       <div class="column half">
         <h2>Connect Your Dropbox.</h2>
-        <p>You'll need to authenticate your Dropbox account with us and provide access for us to push new photos to your account when they become available.</p>
+        <p>You'll need to <a href="<%= auth_url %>">authorize</a> your Dropbox account with us and provide access for us to push new photos to your account when they become available.</p>
       </div>
-      <div class="column half"></div>
+      <div class="column half animated fadeIn">
+        <%= image_tag 'dropbox.svg', width: '213', height: '225' %>
+      </div>
     </div>
   </div>
 </section>
@@ -43,7 +45,9 @@
         <p>Due to current demand I've had to create a waitlist. Once you've connected your Dropbox account you'll be placed in the <a href="<%= waitlist_url %>">waitlist</a>. Each day I try to activate 15 to 20 accounts. Please be patient, it will be worth it!</p>
         <p>If you feel like you've been on the waitlist "forever" then <a href="http://twitter.com/hopkinschris" target="_blank">bug me</a> about it.</p>
       </div>
-      <div class="column half"></div>
+      <div class="column half animated fadeIn">
+        <%= image_tag 'watch.svg', width: '295', height: '231' %>
+      </div>
     </div>
   </div>
 </section>
@@ -55,7 +59,9 @@
         <h2>Get Photos.</h2>
         <p>Once your account is activated you will start seeing photos being delivered to your Dropbox. Your initial payload will include all of the photos curated by the <a href="http://unsplash.com">Unsplash</a> team. Thereafter, every 10 days or so you will automatically receive another set of 10 photos delivered to your Dropbox. You just need sit back and relax.</p>
       </div>
-      <div class="column half"></div>
+      <div class="column half animated fadeIn">
+        <%= image_tag 'computer.svg', width: '295', height: '225' %>
+      </div>
     </div>
   </div>
 </section>
@@ -65,9 +71,14 @@
     <div class="row">
       <div class="column half">
         <h2>Support The Project.</h2>
-        <p>If you enjoy Splashbox, please consider making a monetary donation to the project. This will help me cover server costs and continued improvements to the service.</p>
+        <p>If you enjoy Splashbox, please consider making a donation to the project. This will help me cover server costs and continued improvements to the service.</p>
+        <a class="button" href="https://gum.co/splashbox"><button class="purple">Donate &rarr;</button></a>
+        <br></br>
+        <p>Or <a href="https://coinbase.com/checkouts/2a248182bd800b210d54bcdc13b07dd0">pitch in some Bitcoin</a>.</p>
       </div>
-      <div class="column half"></div>
+      <div class="column half animated fadeIn">
+        <%= image_tag 'pig.svg', width: '213', height: '185' %>
+      </div>
     </div>
   </div>
 </section>
