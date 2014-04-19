@@ -17,7 +17,7 @@
   <div class="container">
     <div class="row">
       <div class="column full">
-        <h3 class="animated fadeInUpBig"><span class="photo-count count odometer"></span> photos delivered to over <span class="user-count count odometer"></span> Dropbox accounts</h3>
+        <h3 class="animated fadeInUpBig"><span class="photo-count count odometer" data-count="<%= @photo_count %>"></span> photos delivered to over <span class="user-count count odometer" data-count="<%= @user_count %>"></span> Dropbox accounts</h3>
       </div>
     </div>
   </div>
@@ -42,8 +42,9 @@
     <div class="row">
       <div class="column half">
         <h2>Watch The Waitlist.</h2>
-        <p>Due to current demand I've had to create a waitlist. Once you've connected your Dropbox account you'll be placed in the <a href="<%= waitlist_url %>">waitlist</a>. Each day I try to activate 15 to 20 accounts. Please be patient, it will be worth it!</p>
+        <p>Due to current demand I've had to create a waitlist. Once you've connected your Dropbox account you'll be placed in the <a href="<%= waitlist_url %>">waitlist</a>. Each day I try to activate a handful of accounts. Please be patient, it will be worth it!</p>
         <p>If you feel like you've been on the waitlist "forever" then <a href="http://twitter.com/hopkinschris" target="_blank">bug me</a> about it.</p>
+        <a class="button" href="<%= waitlist_url %>"><button class="purple">View Waitlist &rarr;</button></a>
       </div>
       <div class="column half animated fadeIn">
         <%= image_tag 'watch.svg', width: '295', height: '231' %>

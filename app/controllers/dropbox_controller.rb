@@ -24,16 +24,16 @@ class DropboxController < ApplicationController
     if user = User.find_by_dropbox_uid(params[:uid])
       user.update_attributes(access_token: result.token, access_secret: result.secret)
       if user.waitlist
-        flash[:notice] = "Success!"
-        redirect_to controller: 'home', action: 'show', id: user.id
+        flash[:notice] = "You're on the wailist. Please be patient :)"
+        redirect_to controller: 'home', action: 'index'
       else
-        flash[:notice] = "Success!"
-        redirect_to controller: 'home', action: 'show', id: user.id
+        flash[:notice] = "Welcome back #{ user.name } :)"
+        redirect_to controller: 'home', action: 'me', id: user.id
       end
     else
       user = User.create!(access_token: result.token, access_secret: result.secret, dropbox_uid: params[:uid])
-      flash[:notice] = "Beauty! You've succesfully authorized Splashbox with Dropbox."
-      redirect_to controller: 'home', action: 'show', id: user.id
+      flash[:notice] = "Beauty! You've succesfully authorized Splashbox with Dropbox. You're now on the waitlist."
+      redirect_to controller: 'home', action: 'index'
     end
   end
 end

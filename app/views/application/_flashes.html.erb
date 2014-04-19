@@ -1,5 +1,5 @@
-<div id="flash">
+<div class="flash">
   <% flash.each do |key, value| -%>
-    <div id="flash_<%= key %>"><%= value %></div>
+    <p id="message" class="<%= key %>"><%= value %></p>
   <% end -%>
 </div>
