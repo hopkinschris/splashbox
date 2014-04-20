@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
   before_filter :get_counts, only: [:index, :show]
+  before_filter :authenticate_user!, only: [:me]
+  before_filter :correct_user?, only: [:me]
 
   def index
     @waiting = User.waiting.sort_by(&:created_at)
@@ -10,6 +12,7 @@ class HomeController < ApplicationController
 
   def me
     @user = User.find_by_id(params[:id])
+    @dropbox_photo_count = @user.completions.length
   end
 
   private

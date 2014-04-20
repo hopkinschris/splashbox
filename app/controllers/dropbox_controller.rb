@@ -23,6 +23,7 @@ class DropboxController < ApplicationController
   def create_user_and_return_home(result)
     if user = User.find_by_dropbox_uid(params[:uid])
       user.update_attributes(access_token: result.token, access_secret: result.secret)
+      session[:user_id] = user.id
       if user.waitlist
         flash[:notice] = "You're on the wailist. Please be patient :)"
         redirect_to controller: 'home', action: 'index'
