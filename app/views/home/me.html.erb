@@ -6,7 +6,7 @@
         <article class="animated fadeIn">
           <h1 id="logo" class="beta">Splashbox</h1>
           <p>Hi-resolution photos delivered to your Dropbox</p>
-          <a class="button" href="<%= root_url %>"><button class="purple">&larr; Back</button></a>
+          <a class="button" href="https://www.dropbox.com/home/Apps/Splashbox"><button class="purple">View Photos &rarr;</button></a>
         </article>
       </div>
     </div>
@@ -17,7 +17,7 @@
   <div class="container">
     <div class="row">
       <div class="column full">
-        <h3 class="animated fadeInUpBig"><span class="waitlist-count count odometer" data-count="<%= @waiting.count %>"></span> users on the waitlist</h3>
+        <h3 class="animated fadeInUpBig"><span class="dropbox-photo-count count odometer" data-count="<%= @dropbox_photo_count %>"></span> hi-resolution photos have been added to your Dropbox</h3>
       </div>
     </div>
   </div>
@@ -27,27 +27,14 @@
   <div class="container">
     <div class="row">
       <div class="column half">
-        <h2>Waitlist.</h2>
-        <p>I try my best to activate a handful of accounts each day. If you're still interested you'll need to <a href="<%= auth_url %>">authorize</a> your Dropbox account before being added to the waitlist.</p>
-        <a class="button" href="http://twitter.com/hopkinschris"><button class="purple">Tweet me &rarr;</button></a>
+        <h2>Support The Project.</h2>
+        <p>If you enjoy Splashbox, please consider making a donation to the project. This will help me cover server costs and continued improvements to the service.</p>
+        <a class="button" href="https://gum.co/splashbox"><button class="purple">Donate &rarr;</button></a>
+        <br></br>
+        <p>Or <a href="https://coinbase.com/checkouts/512ca7f59a97a4688539e7debc7fe524">pitch in some Bitcoin</a>.</p>
       </div>
       <div class="column half animated fadeIn">
-        <table id="headings">
-          <tr>
-            <td><p>Name</p></td>
-            <td><p>Dropbox ID</p></td>
-          </tr>
-        </table>
-        <div id="waitlist">
-          <table>
-            <% @waiting.each do |w| %>
-              <tr>
-                <td><p><%= w.name.split(' ', 2)[0] %></p></td>
-                <td><p><%= w.dropbox_uid %></p></td>
-              </tr>
-            <% end %>
-          </table>
-        </div>
+        <%= image_tag 'pig.svg', width: '213', height: '185' %>
       </div>
     </div>
   </div>

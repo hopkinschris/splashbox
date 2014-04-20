@@ -1,4 +1,5 @@
 //= require jquery
 //= require jquery_ujs
-//= require jquery.fittext
+//= require odometer
+//= require main
 //= require_tree .
