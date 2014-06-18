@@ -26,10 +26,14 @@ task save_photos: :environment do
       Photo.all.each do |photo|
         unless user.completions.include? photo.source_url
           puts "user id: #{ user.id }"
-          photo.save_to_dropbox(user, photo.id, photo.source_url)
-          user.completions.push photo.source_url
-          user.save!
-          puts "#{ user.name }: Photo saved to Dropbox as #{ photo.id }.jpg"
+          begin
+            photo.save_to_dropbox(user, photo.id, photo.source_url)
+            user.completions.push photo.source_url
+            user.save!
+            puts "#{ user.name }: Photo saved to Dropbox as #{ photo.id }.jpg"
+          rescue Exception
+            puts "#{ photo.id } no longer has a valid url."
+          end
         end
       end
     end
