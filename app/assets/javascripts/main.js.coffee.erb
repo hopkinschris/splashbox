@@ -77,3 +77,13 @@ $(document).ready ->
       theme: 'tooltipster-light'
       interactive: true
       speed: 100
+
+  # Panel
+  if $('body').attr('id') is 'marketing' or $('body').attr('id') is 'waitlist'
+    setTimeout ->
+      $('.sublist-panel').fadeIn(400, panelClose)
+    , 3000
+
+    panelClose = ->
+      $('.close').click ->
+        $('.sublist-panel').fadeOut()
