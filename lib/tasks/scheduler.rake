@@ -1,57 +1,56 @@
 desc "Scrape photo urls from unsplash.com"
 task scrape: :environment do
   puts "Scraping photos now..."
-  require 'nokogiri'
-  require 'open-uri'
-
-  (1..999).each do |i|
-    doc = Nokogiri::HTML(open("http://unsplash.com/page/#{ i }"))
-    html = doc.css('.post .photo_div a')
-    break if html.empty?
-    html.each do |link|
-      unless Photo.find_by_source_url(link["href"])
-        Photo.new_from_source_url(link["href"])
-        puts "Photo created * #{ link['href'] }"
-      end
-    end
-  end
+  scraper = Scraper.new
+  scraper.run
   puts "Done."
 end
 
 desc "Save photos to Dropbox"
 task save_photos: :environment do
   puts "Saving photos to Dropbox..."
-  User.consumers.each do |user|
-    unless user.deactivated
-      Photo.all.each do |photo|
-        unless user.completions.include? photo.source_url
-          puts "user id: #{ user.id }"
-          begin
-            photo.save_to_dropbox(user, photo.id, photo.source_url)
-            user.completions.push photo.source_url
-            user.save!
-            puts "#{ user.name }: Photo saved to Dropbox as #{ photo.id }.jpg"
-          rescue Exception
-            puts "#{ photo.id } no longer has a valid url."
-          end
-        end
+  User.consumers.find_each do |user|
+    Photo.find_each do |photo|
+      unless user.completions.include?(photo.source_url)
+        puts "user id: #{ user.id }"
+        photo.save_to_dropbox(user, photo.id, photo.source_url)
+        user.completions.push photo.source_url
+        user.save!
+        puts "#{ user.name }: Photo saved to Dropbox as #{ photo.id }.jpg"
       end
     end
   end
   puts "Done."
 end
 
-desc "Upgrade activated users over to the new system"
-task upgrade_users: :environment do
-  puts "Upgrading users..."
-  User.consumers.each do |user|
-    unless user.deactivated
-      Photo.all.each do |photo|
-        user.completions.push photo.source_url
+# Embed.ly allows for 5000 urls per month for free
+desc "Extract color data for existing Photos"
+task extract_colors: :environment do
+  puts "Extracting color data..."
+  Photo.find_each do |photo|
+    if photo.colors.empty?
+      if colors = photo.color_data_extraction(photo.tumblr_url)
+        photo.update_attributes! colors: colors
+        puts "Colors updated * #{ photo.id }.jpg"
       end
-      user.save!
-      puts "#{ user.name } has been upgraded."
     end
   end
+  puts "Done."
+end
+
+# Data Backfillers
+desc "Save author name and url for existing Photos"
+task save_authors: :environment do
+  puts "Saving author details..."
+  scraper = Scraper.new
+  scraper.get_author_data
+  puts "Done."
+end
+
+desc "Save tumblr url for existing Photos"
+task save_tumblr_urls: :environment do
+  puts "Saving tumblr urls..."
+  scraper = Scraper.new
+  scraper.get_tumblr_urls
   puts "Done."
 end

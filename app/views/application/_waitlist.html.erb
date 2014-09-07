@@ -1,0 +1,34 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="column half">
+        <h2>Waitlist.</h2>
+        <p>I try my best to activate a handful of accounts each day.</p>
+        <% if @user.present? %>
+          <p>Psst...If waitlists aren't your thing, please consider making a $1 monthly donation. Project supporters will receive special treatment!</p>
+        <% else %>
+          <p>Psst...If waitlists aren't your thing, please consider making a $1 monthly donation to the project through your <a href="<%= dashboard_path %>">dashboard</a>. Project supporters will receive special treatment!</p>
+        <% end %>
+        <%= waitlist_primary_button %>
+      </div>
+      <div class="column half animated fadeIn">
+        <table id="headings">
+          <tr>
+            <td><p>Name</p></td>
+            <td><p>Dropbox ID</p></td>
+          </tr>
+        </table>
+        <div id="waitlisters">
+          <table>
+            <% @waiters.each do |waiter| %>
+              <tr>
+                <td><p><%= waiter.name.split(' ', 2)[0] %></p></td>
+                <td><p><%= waiter.dropbox_uid %></p></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

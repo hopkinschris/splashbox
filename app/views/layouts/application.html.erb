@@ -5,14 +5,15 @@
   <meta name="ROBOTS" content="NOODP" />
   <%= favicon_link_tag 'favicon.ico' %>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Splashbox (Beta)</title>
+  <title>Splashbox</title>
   <%= stylesheet_link_tag :application, :media => 'all' %>
+  <%= javascript_include_tag :application %>
+  <%= javascript_include_tag "https://checkout.stripe.com/v2/checkout.js" %>
   <%= csrf_meta_tags %>
 </head>
-<body class="<%= body_class %>">
+<body class="<%= controller_name %>" id="<%= action_name %>">
   <%= render 'flashes' -%>
   <%= yield %>
-  <%= render 'javascript' %>
   <%= render 'analytics' %>
 </body>
 </html>

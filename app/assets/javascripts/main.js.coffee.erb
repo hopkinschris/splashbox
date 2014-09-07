@@ -1,0 +1,77 @@
+$(document).ready ->
+
+  # Odometers
+  photo_el = document.querySelector('.photo-count')
+  user_el = document.querySelector('.user-count')
+  dropbox_photo_el = document.querySelector('.dropbox-photo-count')
+  payload_el = document.querySelector('.payload-count')
+
+  setTimeout ->
+    photo_el?.innerHTML = $('.photo-count').data('count')
+    user_el?.innerHTML = $('.user-count').data('count')
+    dropbox_photo_el?.innerHTML = $('.dropbox-photo-count').data('count')
+    payload_el?.innerHTML = $('.payload-count').data('count')
+  , 1000
+
+  # Testimonials
+  $('.avatar').hover ->
+    unless $(@).hasClass('active')
+      data = $(@).data('avatar')
+      $('.avatar.active, .testimonial.active').removeClass('active')
+      $($('.testimonial')[data]).addClass('active')
+      $($('.avatar')[data]).addClass('active')
+
+  # Stripe Checkout
+  $('.dashboard .donate').click ->
+    token = (res) ->
+      input = $('<input type=hidden name=stripeToken />').val(res.id)
+      if $('form').append(input).submit()
+        $.post('/charges', { stripeToken: res.id, email: res.email }, 'json')
+          .done =>
+            $('body').animate
+              scrollTop: 0
+            if $('.flash').height() is 0
+              $('.flash').hide().append "<p id='message' class='notice'>You're my hero! Photos will appear in your Dropbox shortly after your donation. Refreshing...</p>"
+              $('.flash').slideDown 200, ->
+                setTimeout =>
+                  location.reload()
+                , 5000
+            else
+              $('.notice').text 'You\'re my hero! Photos will appear in your Dropbox shortly after your donation. Refreshing...'
+              setTimeout =>
+                location.reload()
+              , 5000
+          .fail =>
+            $('body').animate
+              scrollTop: 0
+            if $('.flash').height() is 0
+              $('.flash').hide().append "<p id='message' class='notice'>Oops! Looks like some thing went wrong, please try again.</p>"
+              $('.flash').slideDown()
+            else
+              $('.notice').text 'Oops! Looks like some thing went wrong, please try again.'
+
+    StripeCheckout.open
+      key:         "<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>"
+      amount:      100
+      currency:    'usd'
+      name:        'Splashbox'
+      description: '$1 Monthly Donation'
+      panelLabel:  'Donate'
+      image:       '../assets/stripe-avatar.png'
+      token:       token
+      allowRememberMe: false
+
+    return false
+
+  # Gallery
+  if $('#grid-gallery').length > 0
+    new CBPGridGallery document.getElementById 'grid-gallery'
+
+    $('img.lazy').lazyload
+      effect: 'fadeIn'
+
+    $('.tooltip').tooltipster
+      animation: 'grow'
+      theme: 'tooltipster-light'
+      interactive: true
+      speed: 100

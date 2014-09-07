@@ -1,0 +1,26 @@
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="column full">
+        <div class="overlay animated pulse"></div>
+        <article class="animated fadeIn">
+          <h1 id="logo">Splashbox</h1>
+          <p>Hi-resolution photos delivered to your Dropbox</p>
+            <%= dashboard_primary_button %>
+        </article>
+      </div>
+    </div>
+  </div>
+</header>
+
+<% if @user.waitlist? %>
+  <%= render 'waitlist_counter' %>
+  <%= render 'waitlist' %>
+  <%= render 'testimonials' %>
+  <%= render 'seen' %>
+<% else %>
+  <%= render 'photo_counter' %>
+  <%= render 'gallery' %>
+<% end %>
+
+<%= render 'footer' %>

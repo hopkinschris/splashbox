@@ -5,7 +5,7 @@
   top: 0
   left: 0
   z-index: 1
-  background-image: url('http://res.cloudinary.com/hhsqdz7qy/image/upload/v1404045998/bg.jpg')
+  background-image: image-url('bg.jpg')
   background-size: cover
   &:after
     content: ''
@@ -18,18 +18,6 @@
     background-image: -ms-linear-gradient(-135deg, #7ed3fb 0%, #8e75e6 100%)
     background-image: linear,-225deg,#7ed3fb 0%,#8e75e6 100%
     opacity: 0.75
-
-.beta
-  position: relative
-  display: inline-block
-  &:after
-    content: 'Beta'
-    text-transform: uppercase
-    font-size: 10px
-    font-family: 'Proxima Nova Regular', Helvetica Neue, Helvetica, Arial, sans-serif
-    position: absolute
-    top: -15px
-    right: -25px
 
 button
   display: block
@@ -78,7 +66,7 @@ a.button
     p
       color: #8e75e6
 
-#waitlist
+#waitlisters
   height: 350px
   overflow-y: scroll
   margin: 0 auto
@@ -86,3 +74,78 @@ a.button
     width: 100%
     td
       width: 50%
+
+.testimonial
+  min-height: 216px
+
+.grid-gallery
+  .slideshow
+    nav
+      display: none
+    figure
+      img
+        max-height: 372px
+    figcaption
+      p
+        display: inline-block
+        a
+          border-bottom: 2px solid rgba(142,117,230,0.5)
+          &:hover
+            border-color: rgba(142,117,230,1)
+      .color-block
+        float: right
+        display: inline-block
+        width: 50px
+        height: 50px
+
+.seen
+  list-style: none
+  text-align: center
+  padding: 0
+  li
+    display: inline-block
+    margin: 0 1.4%
+    vertical-align: middle
+    a
+      display: block
+      margin: 1em 0
+      border-bottom: none!important
+
+    #unsplash
+      background: image-url('seen/unsplash.png')
+      background-size: 110px 25px
+      width: 110px
+      height: 25px
+    #product-hunt
+      background: image-url('seen/product-hunt.png')
+      background-size: 120px 22px
+      width: 120px
+      height: 22px
+      opacity: 0.7
+    #wefunction
+      background: image-url('seen/wefunction.png')
+      background-size: 80px 20px
+      width: 80px
+      height: 20px
+    #charged
+      background: image-url('seen/charged.png')
+      background-size: 90px 31px
+      width: 90px
+      height: 31px
+    #uniiverse
+      background: image-url('seen/uniiverse.png')
+      background-size: 100px 18px
+      width: 100px
+      height: 18px
+    #bianca-board
+      background: image-url('seen/bianca-board.png')
+      background-size: 120px 17px
+      width: 120px
+      height: 17px
+      opacity: 0.6
+    #site-report-builder
+      background: image-url('seen/site-report-builder.png')
+      background-size: 120px 20px
+      width: 120px
+      height: 20px
+      opacity: 0.8

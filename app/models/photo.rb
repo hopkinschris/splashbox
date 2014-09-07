@@ -1,15 +1,20 @@
-# require 'highline/import'
-
 class Photo < ActiveRecord::Base
   include Splashbox::Dropbox
+  include Splashbox::Embedly
 
-  attr_accessible :source_url
+  serialize :colors, Array
 
-  def self.new_from_source_url(url)
-    Photo.create(source_url: url)
+  attr_accessible :source_url,
+                  :author_name,
+                  :author_url,
+                  :colors,
+                  :tumblr_url
+
+  def self.new_from_scraper source_url, tumblr_url, author_name, author_url
+    Photo.create source_url: source_url, tumblr_url: tumblr_url, author_name: author_name, author_url: author_url
   end
 
-  def save_to_dropbox(user, id, url)
+  def save_to_dropbox user, id, url
     agent = Mechanize.new
 
     # Deal with any redirects (e.g. bit.ly)
@@ -20,11 +25,7 @@ class Photo < ActiveRecord::Base
     upload_file(user, "#{ id }.jpg", content)
   end
 
-  private
-
-  def self.reset_ids
-    if ask("Are you sure you want to reset the photos table ids back to '1'? (yes/no)", String) == "yes"
-      ActiveRecord::Base.connection.reset_pk_sequence!('photos')
-    end
+  def color_data_extraction tumblr_url
+    extract_colors tumblr_url
   end
 end

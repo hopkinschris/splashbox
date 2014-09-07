@@ -26,32 +26,35 @@ section
           border-color: rgba(142,117,230,1)
       &:nth-child(2)
         text-align: center
-        margin-top: 60px
+        margin-top: 50px
 
 footer
-  ul
-    list-style: none
-    margin: 0 auto
-    padding: 8% 0 4% 0
-    text-align: center
-    li
-      display: inline-block
-      margin-left: 7%
-      margin-right: 7%
-      &:nth-child(1)
-        margin-left: 0
-        margin-right: 7%
-      &:nth-child(3)
-        margin-left: 7%
-        margin-right: 0
-      a
-        color: rgba(0,0,0,0.1)
-        &:hover
-          color: rgba(142,117,230,0.5)
-  p
-    color: rgba(0,0,0,0.1)
-    text-align: center
-    padding-bottom: 4%
-    img
-      vertical-align: middle
-      padding: 3px
+  padding: 8% 0 10% 0
+  .row
+    overflow: visible
+    ul
+      padding: 0
+      list-style: none
+      display: inline
+      li
+        display: inline-block
+        &:nth-child(1)
+          margin-left: 0
+          margin-right: 5%
+        &:nth-child(3)
+          margin-left: 5%
+          margin-right: 0
+        a
+          color: rgba(0,0,0,0.2)
+          &:hover
+            color: rgba(142,117,230,0.5)
+          &:after
+            content: none
+    p
+      position: relative
+      top: -27px
+      float: right
+      color: rgba(0,0,0,0.2)
+      img
+        vertical-align: middle
+        padding: 3px
