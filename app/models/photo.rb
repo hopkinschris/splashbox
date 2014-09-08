@@ -1,6 +1,5 @@
 class Photo < ActiveRecord::Base
   include Splashbox::Dropbox
-  include Splashbox::Embedly
 
   serialize :colors, Array
 
@@ -23,9 +22,5 @@ class Photo < ActiveRecord::Base
 
     content = agent.get_file(destination_url)
     upload_file(user, "#{ id }.jpg", content)
-  end
-
-  def color_data_extraction tumblr_url
-    extract_colors tumblr_url
   end
 end

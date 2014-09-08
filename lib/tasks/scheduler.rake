@@ -29,7 +29,7 @@ task extract_colors: :environment do
   puts "Extracting color data..."
   Photo.find_each do |photo|
     if photo.colors.empty?
-      if colors = photo.color_data_extraction(photo.tumblr_url)
+      if colors = Splashbox::Embedly.extract_colors(photo.tumblr_url)
         photo.update_attributes! colors: colors
         puts "Colors updated * #{ photo.id }.jpg"
       end

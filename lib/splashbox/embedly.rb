@@ -1,6 +1,6 @@
 module Splashbox::Embedly
 
-  def extract_colors tumblr_url
+  def self.extract_colors tumblr_url
     begin
       client = build_client
       response = client.extract url: tumblr_url
@@ -14,7 +14,7 @@ module Splashbox::Embedly
 
   private
 
-  def build_client
+  def self.build_client
     Embedly::API.new key: ENV['EMBEDLY_KEY']
   end
 end
