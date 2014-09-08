@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140906192440) do
+ActiveRecord::Schema.define(version: 20140908142943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20140906192440) do
     t.string   "dropbox_uid"
     t.text     "completions"
     t.string   "customer_id"
+    t.boolean  "disconnected",  default: false
   end
 
 end
