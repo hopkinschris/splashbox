@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   scope :admin,       -> { where(dropbox_uid: ENV['DROPBOX_ADMIN_ID']).first }
   scope :consumers,   -> { where(waitlist: false).where(disconnected: false) }
   scope :waiters,     -> { where(waitlist: true) }
-  scope :donater,     -> { where.not(customer_id: nil) }
+  scope :donaters,    -> { where.not(customer_id: nil) }
 
   def donater?
     customer_id?

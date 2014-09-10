@@ -6,8 +6,8 @@ task scrape: :environment do
   puts "Done."
 end
 
-desc "Save photos to Dropbox"
-task save_photos: :environment do
+desc "Save photos to Dropbox for all consumers"
+task consumers_save_photos: :environment do
   puts "Saving photos to Dropbox..."
   User.consumers.find_each do |user|
     Photo.find_each do |photo|
@@ -17,6 +17,24 @@ task save_photos: :environment do
         user.completions.push photo.source_url
         user.save!
         puts "#{ user.name }: Photo saved to Dropbox as #{ photo.id }.jpg"
+      end
+    end
+  end
+  puts "Done."
+end
+
+
+desc "Save photos to Dropbox for all donaters"
+task donaters_save_photos: :environment do
+  puts "Saving photos to Dropbox..."
+  User.donaters.find_each do |user|
+    Photo.find_each do |photo|
+      unless user.completions.include?(photo.source_url)
+        puts "user id: #{ user.id }"
+        photo.save_to_dropbox(user, photo.id, photo.source_url)
+        user.completions.push photo.source_url
+        user.save!
+        puts "*Donater* #{ user.name }: Photo saved to Dropbox as #{ photo.id }.jpg"
       end
     end
   end
