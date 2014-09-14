@@ -11,13 +11,13 @@ class Scraper
       html = open_post page
       break if html.empty?
       html.each do |post|
-        tumblr_url = post.search('img').first.attributes['src'].value
+        quick_url = post.search('img').first.attributes['src'].value
         source_url = post.search('.photo_div a').first.attributes['href'].value
         author_name = post.search('.caption a').last.text
         author_url = post.search('.caption a').last.attributes['href'].value unless post.search('.caption a').last.attributes['href'].nil?
 
         unless Photo.find_by_source_url(source_url)
-          Photo.new_from_scraper source_url, tumblr_url, author_name, author_url
+          Photo.new_from_scraper source_url, quick_url, author_name, author_url
           puts "Photo created * #{ source_url }"
         end
       end
@@ -44,18 +44,18 @@ class Scraper
     end
   end
 
-  # Used to backfill tumblr_url data
-  def get_tumblr_urls
+  # Used to backfill quick_url data
+  def get_quick_urls
     @range.each do |page|
       html = open_post page
       break if html.empty?
       html.each do |post|
-        tumblr_url = post.search('img').first.attributes['src'].value
+        quick_url = post.search('img').first.attributes['src'].value
         source_url = post.search('.photo_div a').first.attributes['href'].value
 
         if photo = Photo.find_by_source_url(source_url)
-          photo.update_attributes! tumblr_url: tumblr_url
-          puts "Updated tumblr url for * #{ photo.id }.jpg"
+          photo.update_attributes! quick_url: quick_url
+          puts "Updated quick url for * #{ photo.id }.jpg"
         end
       end
     end

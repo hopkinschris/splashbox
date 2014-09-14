@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140908142943) do
+ActiveRecord::Schema.define(version: 20140914225227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20140908142943) do
     t.string   "author_name"
     t.string   "author_url"
     t.text     "colors",      default: "--- []\n"
-    t.string   "tumblr_url"
+    t.string   "quick_url"
   end
 
   create_table "users", force: true do |t|

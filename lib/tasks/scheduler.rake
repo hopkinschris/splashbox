@@ -47,7 +47,7 @@ task extract_colors: :environment do
   puts "Extracting color data..."
   Photo.find_each(batch_size: 100) do |photo|
     if photo.colors.empty?
-      if colors = Splashbox::Embedly.extract_colors(photo.tumblr_url)
+      if colors = Splashbox::Embedly.extract_colors(photo.quick_url)
         photo.update_attributes! colors: colors
         puts "Colors updated * #{ photo.id }.jpg"
       end
@@ -65,10 +65,10 @@ task save_authors: :environment do
   puts "Done."
 end
 
-desc "Save tumblr url for existing Photos"
-task save_tumblr_urls: :environment do
-  puts "Saving tumblr urls..."
+desc "Save quick url for existing Photos"
+task save_quick_urls: :environment do
+  puts "Saving quick urls..."
   scraper = Scraper.new
-  scraper.get_tumblr_urls
+  scraper.get_quick_urls
   puts "Done."
 end
