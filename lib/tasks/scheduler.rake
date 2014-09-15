@@ -16,7 +16,7 @@ task consumers_save_photos: :environment do
         photo.save_to_dropbox(user, photo.id, photo.source_url)
         user.completions.push photo.source_url
         user.save!
-        puts "#{ user.name }: Photo saved to Dropbox as #{ photo.id }.jpg"
+        puts "*Consumer* #{ user.name }: Photo saved to Dropbox as #{ photo.id }.jpg"
       end
     end
   end
@@ -47,7 +47,7 @@ task extract_colors: :environment do
   puts "Extracting color data..."
   Photo.find_each(batch_size: 100) do |photo|
     if photo.colors.empty?
-      if colors = Splashbox::Embedly.extract_colors(photo.tumblr_url)
+      if colors = Splashbox::Embedly.extract_colors(photo.quick_url)
         photo.update_attributes! colors: colors
         puts "Colors updated * #{ photo.id }.jpg"
       end
@@ -56,19 +56,17 @@ task extract_colors: :environment do
   puts "Done."
 end
 
-# Data Backfillers
-desc "Save author name and url for existing Photos"
-task save_authors: :environment do
-  puts "Saving author details..."
-  scraper = Scraper.new
-  scraper.get_author_data
-  puts "Done."
-end
-
-desc "Save tumblr url for existing Photos"
-task save_tumblr_urls: :environment do
-  puts "Saving tumblr urls..."
-  scraper = Scraper.new
-  scraper.get_tumblr_urls
-  puts "Done."
+# One-time update, for v2 scraper
+desc "Reset and update consumer completions"
+task reset_completions: :environment do
+  puts "Resetting and updating completions..."
+  User.consumers.find_each do |user|
+    puts "Resetting user id: #{ user.id }"
+    user.update_attributes! completions: []
+    Photo.find_each do |photo|
+      user.completions.push photo.source_url
+    end
+    user.save!
+    puts "User saved."
+  end
 end

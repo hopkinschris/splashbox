@@ -7,10 +7,10 @@ class Photo < ActiveRecord::Base
                   :author_name,
                   :author_url,
                   :colors,
-                  :tumblr_url
+                  :quick_url
 
-  def self.new_from_scraper source_url, tumblr_url, author_name, author_url
-    Photo.create source_url: source_url, tumblr_url: tumblr_url, author_name: author_name, author_url: author_url
+  def self.new_from_scraper source_url, quick_url, author_name, author_url
+    Photo.create source_url: source_url, quick_url: quick_url, author_name: author_name, author_url: author_url
   end
 
   def save_to_dropbox user, id, url

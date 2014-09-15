@@ -5,7 +5,7 @@
       <% @photos.each do |photo| %>
         <li>
           <figure>
-            <img class="lazy" data-original="<%= photo.tumblr_url %>" width="238" height="158" alt="img<%= photo.id %>"/>
+            <img class="lazy" data-original="<%= photo.quick_url %>" width="238" height="158" alt="img<%= photo.id %>"/>
           </figure>
         </li>
       <% end %>
@@ -18,7 +18,7 @@
           <figure>
             <a href="<%= photo.source_url %>" target="_blank">
               <!-- TODO Load images faster -->
-              <img src="<%= photo.tumblr_url %>" alt="img<%= photo.id %>"/>
+              <img src="<%= photo.quick_url %>" alt="img<%= photo.id %>"/>
             </a>
             <figcaption>
               <p>Photo by <a href="<%= photo.author_url %>" target="_blank"><%= photo.author_name %></a></p>

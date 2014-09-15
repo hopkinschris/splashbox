@@ -1,9 +1,9 @@
 module Splashbox::Embedly
 
-  def self.extract_colors tumblr_url
+  def self.extract_colors quick_url
     begin
       client = build_client
-      response = client.extract url: tumblr_url
+      response = client.extract url: quick_url
       colors = response[0].marshal_dump[:images][0]['colors']
     rescue => e
       ap "An error occurred during color extraction: #{ e }"
