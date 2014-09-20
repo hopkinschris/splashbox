@@ -17,6 +17,6 @@ class DashboardController < ApplicationController
       end
     end
 
-    @photos
+    @photos.sort!{ |a,b| b.created_at <=> a.created_at }
   end
 end
