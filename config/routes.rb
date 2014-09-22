@@ -10,5 +10,7 @@ Splashbox::Application.routes.draw do
 
   get '/logout', to: 'dropbox#destroy', as: :logout
 
+  get '/privacy' => redirect('https://drive.google.com/file/d/0B1zCBHrHbPIccTNWMVVid1lVd1U/edit?usp=sharing')
+
   resources :charges, only: :create
 end
