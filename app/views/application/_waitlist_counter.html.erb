@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="column full">
-        <h3 class="animated fadeInUpBig"><span class="waitlist-count count odometer" data-count="<%= @waiters.count %>"></span> users on the waitlist</h3>
+        <h3 class="animated fadeInUpBig">You're number <span class="count"><%= waitlist_spot %></span> of <span class="waitlist-count count odometer" data-count="<%= @waiters.count %>"></span> users on the waitlist</h3>
       </div>
     </div>
   </div>

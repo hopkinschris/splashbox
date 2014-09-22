@@ -18,4 +18,9 @@ module ApplicationHelper
       end
     end
   end
+
+  def waitlist_spot
+    hash = Hash[@waiters.map.with_index.to_a]
+    hash[@user] + 1
+  end
 end

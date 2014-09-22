@@ -4,10 +4,6 @@ class PagesController < ApplicationController
   def marketing
   end
 
-  def waitlist
-    @waiters = User.waiters.sort_by(&:created_at)
-  end
-
   private
 
   def get_counts

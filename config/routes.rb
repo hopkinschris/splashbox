@@ -3,7 +3,7 @@ Splashbox::Application.routes.draw do
 
   get '/me', to: 'dashboard#index', as: :dashboard
 
-  get '/waitlist', to: 'pages#waitlist', as: :waitlist
+  get '/waitlist' => redirect('/')
 
   match 'auth',     via: [:get, :post], to: 'dropbox#authorize', as: :auth
   match 'callback', via: [:get],  to: 'dropbox#authorized_callback', as: :callback
