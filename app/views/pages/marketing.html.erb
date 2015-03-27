@@ -1,0 +1,74 @@
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="column full">
+        <div class="overlay animated fadeIn"></div>
+        <article class="animated fadeIn">
+          <h1 id="logo">Splashbox</h1>
+          <p>Hi-resolution photos delivered to your Dropbox</p>
+          <small id="version">Version 1.0</small>
+          <a class="button" href="<%= auth_url %>"><button class="purple">Get Started &rarr;</button></a>
+        </article>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="stats">
+  <div class="container">
+    <div class="row">
+      <div class="column full">
+        <h3 class="animated fadeInUpBig"><span class="photo-count count odometer" data-count="<%= @photo_count %>"></span> photos delivered to over <span class="user-count count odometer" data-count="<%= @user_count %>"></span> Dropbox accounts</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="column half">
+        <h2>Connect Your Dropbox.</h2>
+        <p>You'll need to <a href="<%= auth_url %>">authorize</a> your Dropbox account with us and provide access for us to push new photos to your account when they become available.</p>
+        <a class="button" href="<%= auth_url %>"><button class="purple">Connect Now &rarr;</button></a>
+      </div>
+      <div class="column half animated fadeIn">
+        <%= image_tag 'dropbox.svg', width: '213', height: '225' %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="column half">
+        <h2>Watch the Waitlist.</h2>
+        <p>Due to current demand I've had to create a waitlist. Once you've connected your Dropbox account you'll be placed on the waitlist.</p>
+        <p>Your spot on the waitlist can be seen in your dashboard.</p>
+        <a class="button" href="<%= dashboard_path %>"><button class="purple">View Waitlist &rarr;</button></a>
+      </div>
+      <div class="column half animated fadeIn">
+        <%= image_tag 'watch.svg', width: '295', height: '231' %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="column half">
+        <h2>Get Photos.</h2>
+        <p>Once your account is activated, you will start seeing photos being delivered to your Dropbox.</p>
+        <p>Your initial payload will include <span class="payload-count count odometer" data-count="<%= @payload_count %>"></span> photos curated by the <a href="http://unsplash.com">Unsplash</a> team. Thereafter, every 10 days or so you will automatically receive another set of 10 photos delivered to your Dropbox.</p>
+        <p>You just sit back and relax.</p>
+      </div>
+      <div class="column half animated fadeIn">
+        <%= image_tag 'computer.svg', width: '295', height: '386' %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= render 'footer' %>

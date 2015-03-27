@@ -1,0 +1,167 @@
+.grid-gallery
+  ul
+    list-style: none
+    margin: 0
+    padding: 0
+  figure
+    margin: 0
+    img
+      display: block
+      width: 100%
+
+.grid-wrap
+  max-width: 69em
+  margin: 0 auto
+  padding: 0 1em 1.875em
+
+.grid
+  margin: 0 auto
+  li
+    width: 25%
+    float: left
+    cursor: pointer
+  figure
+    padding: 15px
+    -webkit-transition: opacity 0.2s
+    transition: opacity 0.2s
+  li:hover figure
+    opacity: 0.7
+  figcaption
+    border-left: 1px solid rgba(0, 0, 0, 0.1)
+    border-right: 1px solid rgba(0, 0, 0, 0.1)
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+    padding: 18px 18px 15px 18px
+
+.slideshow
+  position: fixed
+  background: rgba(0, 0, 0, 0.6)
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  z-index: 500
+  opacity: 0
+  visibility: hidden
+  overflow: hidden
+  -webkit-perspective: 1000px
+  perspective: 1000px
+  -webkit-transition: opacity 0.5s, visibility 0s 0.5s
+  transition: opacity 0.5s, visibility 0s 0.5s
+
+.slideshow-open .slideshow
+  opacity: 1
+  visibility: visible
+  -webkit-transition: opacity 0.5s
+  transition: opacity 0.5s
+
+.slideshow ul
+  width: 100%
+  height: 100%
+  -webkit-transform-style: preserve-3d
+  transform-style: preserve-3d
+  -webkit-transform: translate3d(0, 0, 150px)
+  transform: translate3d(0, 0, 150px)
+  -webkit-transition: -webkit-transform 0.5s
+  transition: transform 0.5s
+  &.animatable li
+    -webkit-transition: -webkit-transform 0.5s
+    transition: transform 0.5s
+
+.slideshow-open .slideshow ul
+  -webkit-transform: translate3d(0, 0, 0)
+  transform: translate3d(0, 0, 0)
+
+.slideshow
+  li
+    width: 660px
+    height: 560px
+    position: absolute
+    top: 50%
+    left: 50%
+    margin: -280px 0 0 -330px
+    visibility: hidden
+    &.show
+      visibility: visible
+    &:after
+      content: ''
+      position: absolute
+      width: 100%
+      height: 100%
+      top: 0
+      left: 0
+      background: rgba(255, 255, 255, 0.8)
+      -webkit-transition: opacity 0.3s
+      transition: opacity 0.3s
+    &.current:after
+      visibility: hidden
+      opacity: 0
+      -webkit-transition: opacity 0.3s, visibility 0s 0.3s
+      transition: opacity 0.3s, visibility 0s 0.3s
+  figure
+    width: 100%
+    height: 100%
+    background: #fff
+    border: 50px solid #fff
+    overflow: hidden
+  figcaption
+    padding-bottom: 20px
+    h3
+      font-weight: 300
+      font-size: 200%
+  nav span
+    position: fixed
+    z-index: 1000
+    color: #59656c
+    text-align: center
+    padding: 3%
+    cursor: pointer
+    font-size: 4em
+    &.nav-prev
+      top: 50%
+      -webkit-transform: translateY(-50%)
+      transform: translateY(-50%)
+    &.nav-next
+      top: 50%
+      -webkit-transform: translateY(-50%)
+      transform: translateY(-50%)
+      right: 0
+    &.nav-close
+      top: 0
+      right: 0
+      padding: 0 0.5em
+      color: #31373a
+      font-size: 4.5em
+
+@media screen and (max-width: 60em)
+  .grid li
+    width: 33.3%
+  .slideshow
+    li
+      width: 100%
+      height: 100%
+      top: 0
+      left: 0
+      margin: 0
+      figcaption
+        text-align: center
+      figure img
+        width: auto
+        margin: 0 auto
+        max-width: 100%
+    nav
+      display: block!important
+      span
+        font-size: 3em
+        padding: 0.3em
+        &.nav-close
+          font-size: 4em
+          padding: 0 0.2em
+          color: #59656c
+
+@media screen and (max-width: 35em)
+  .grid li
+    width: 50%
+
+@media screen and (max-width: 24em)
+  .grid li
+    width: 100%

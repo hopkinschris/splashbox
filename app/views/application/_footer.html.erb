@@ -1,0 +1,21 @@
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="column full">
+        <ul>
+          <% if @user.present? %>
+            <li><a href="<%= logout_path %>">Log out</a></li>
+          <% else %>
+            <li><a href="<%= auth_url %>">Get Started</a></li>
+          <% end %>
+        </ul>
+
+        <p class="animated fadeInUp">
+          <a href="http://heroku.com"><%= image_tag 'heroku-logo.svg', width: '124', height: '42' %></a>
+          <a href="http://dropbox.com"><%= image_tag 'dropbox-logo.svg', width: '150', height: '42' %></a>
+          <a href="http://embed.ly"><%= image_tag 'embedly-logo.svg', width: '129', height: '42' %></a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

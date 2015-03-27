@@ -1,0 +1,29 @@
+$(document).ready ->
+
+  # Odometers
+  photo_el = document.querySelector('.photo-count')
+  user_el = document.querySelector('.user-count')
+  dropbox_photo_el = document.querySelector('.dropbox-photo-count')
+  payload_el = document.querySelector('.payload-count')
+  waitlist_el = document.querySelector('.waitlist-count')
+
+  setTimeout ->
+    photo_el?.innerHTML = $('.photo-count').data('count')
+    user_el?.innerHTML = $('.user-count').data('count')
+    dropbox_photo_el?.innerHTML = $('.dropbox-photo-count').data('count')
+    payload_el?.innerHTML = $('.payload-count').data('count')
+    waitlist_el?.innerHTML = $('.waitlist-count').data('count')
+  , 1000
+
+  # Gallery
+  if $('#grid-gallery').length > 0
+    new CBPGridGallery document.getElementById 'grid-gallery'
+
+    $('img.lazy').lazyload
+      effect: 'fadeIn'
+
+    $('.tooltip').tooltipster
+      animation: 'grow'
+      theme: 'tooltipster-light'
+      interactive: true
+      speed: 100

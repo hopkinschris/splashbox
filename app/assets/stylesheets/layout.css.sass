@@ -1,0 +1,66 @@
+header
+  position: relative
+  height: 38em
+  overflow: hidden
+  article
+    position: relative
+    text-align: center
+    max-width: 50em
+    margin: 0 auto
+    padding: 15% 0
+    z-index: 1
+    h1, p
+      color: white
+    button
+      margin: 15% 0
+    #version
+      text-transform: none
+      display: block
+      color: rgb(142, 117, 230)
+      font-family: 'Proxima Nova Regular', Helvetica Neue, Helvetica, Arial, sans-serif
+
+section
+  color: #333333
+  .container
+    padding: 58px 0 78px 0
+    border-bottom: 1px solid rgba(0,0,0,0.1)
+    .column
+      a
+        border-bottom: 2px solid rgba(142,117,230,0.5)
+        &:hover
+          border-color: rgba(142,117,230,1)
+      &:nth-child(2)
+        text-align: center
+        margin-top: 50px
+
+footer
+  padding: 8% 0 10% 0
+  .row
+    overflow: visible
+    ul
+      padding: 0
+      list-style: none
+      display: inline
+      li
+        display: inline-block
+        &:nth-child(1),
+        &:nth-child(2)
+          margin-left: 0
+          margin-right: 2.5%
+        &:nth-child(4)
+          margin-left: 2.5%
+          margin-right: 0
+        a
+          color: rgba(0,0,0,0.2)
+          &:hover
+            color: rgba(142,117,230,0.5)
+          &:after
+            content: none
+    p
+      position: relative
+      top: -27px
+      float: right
+      color: rgba(0,0,0,0.2)
+      img
+        vertical-align: middle
+        padding: 3px
