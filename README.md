@@ -55,6 +55,35 @@ rake extract_colors
 rake consumers_save_photos
 ````
 
+V. Once you've deployed your app to Heroku ensure to run all the migrations using:
+
+````
+heroku run rake db:migrate -a yourappname
+````
+
+VI. To grant a waitlisted user access:
+
+````
+heroku run rails c -a yourappname
+
+# Find the user and set waitlist to false
+u=User.find id
+u.update_attributes! waitlist: false
+````
+
+VII. Don't wait to wait for the scheduled jobs to run?
+
+````
+# To pull down all the current unsplash.com photos
+heroku run rake scrape -a yourappname
+
+# To extract color palettes from the photos in your database
+heroku run rake extract_colors -a yourappname
+
+# To sync photos to user dropbox accounts
+heroku run rake consumers_save_photos -a yourappname
+````
+
 ## Features
 
 ### Gallery
@@ -68,18 +97,6 @@ Every photo extracted from [http://unsplash.com](http://unsplash.com) is sent th
 ### Waitlist
 
 By default a waitlist mechanism is enabled. All new user accounts are put into a "holding" pattern until an admin grants them access (through the console).
-
-## Screenshots
-
-![Screenshot 1](https://s3.amazonaws.com/f.cl.ly/items/3T2H3a0t0W3a3F0R2422/screenshot-1.jpg)
-
------------------------------
-
-![Screenshot 2](https://s3.amazonaws.com/f.cl.ly/items/0O2W101Z3V3z1m3q073j/screenshot-2.jpg)
-
------------------------------
-
-![Screenshot 3](https://s3.amazonaws.com/f.cl.ly/items/0G0e0443310b2b0m0L0X/screenshot-3.jpg)
 
 ## Credit
 
